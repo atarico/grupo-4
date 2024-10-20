@@ -2,8 +2,7 @@
 {
     static void Main()
     {
-        Console.WriteLine("Probando");
-
+        //Acá va el menú.
     }
 
 }
