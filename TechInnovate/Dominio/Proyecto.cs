@@ -1,7 +1,7 @@
 ﻿namespace TechInnovate
 {
-    public class Proyecto
+    abstract public class Proyecto
     {
-
+        private string _nombreProyecto;
     }
 }
