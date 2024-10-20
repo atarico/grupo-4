@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mateo\\source\\repos\\TechInnovate\\TechInnovate.csproj": {}
+    "C:\\Users\\mateo\\source\\repos\\grupo-4\\TechInnovate\\TechInnovate.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mateo\\source\\repos\\TechInnovate\\TechInnovate.csproj": {
+    "C:\\Users\\mateo\\source\\repos\\grupo-4\\TechInnovate\\TechInnovate.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mateo\\source\\repos\\TechInnovate\\TechInnovate.csproj",
+        "projectUniqueName": "C:\\Users\\mateo\\source\\repos\\grupo-4\\TechInnovate\\TechInnovate.csproj",
         "projectName": "TechInnovate",
-        "projectPath": "C:\\Users\\mateo\\source\\repos\\TechInnovate\\TechInnovate.csproj",
+        "projectPath": "C:\\Users\\mateo\\source\\repos\\grupo-4\\TechInnovate\\TechInnovate.csproj",
         "packagesPath": "C:\\Users\\mateo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mateo\\source\\repos\\TechInnovate\\obj\\",
+        "outputPath": "C:\\Users\\mateo\\source\\repos\\grupo-4\\TechInnovate\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mateo\\AppData\\Roaming\\NuGet\\NuGet.Config",

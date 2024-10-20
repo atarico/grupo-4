@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\mateo\\source\\repos\\TechInnovate\\",
+  "WorkspaceRootPath": "C:\\Users\\mateo\\source\\repos\\grupo-4\\TechInnovate\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|c:\\users\\mateo\\source\\repos\\techinnovate\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|c:\\users\\mateo\\source\\repos\\grupo-4\\techinnovate\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\TechInnovate\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\grupo-4\\TechInnovate\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\mateo\\source\\repos\\TechInnovate\\Program.cs",
+              "ToolTip": "C:\\Users\\mateo\\source\\repos\\grupo-4\\TechInnovate\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-20T22:50:23.495Z",
               "EditorCaption": ""
