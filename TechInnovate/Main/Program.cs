@@ -3,7 +3,7 @@
 
     class Program
     {
-        static List<Proyecto> proyectos = new List<Proyecto>();
+        
         static void Main()
         {
             int opcion = 0;
