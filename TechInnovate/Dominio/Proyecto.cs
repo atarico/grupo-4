@@ -7,7 +7,6 @@
         private DateTime _fechaInicio;
         private Estado _estadoProyecto;
         private Tipo _tipoDesarrollo;
-
         abstract public void DuracionDelProyecto();
     }
 }
