@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\jorge\\source\\repos\\grupo-4\\TechInnovate\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|c:\\users\\jorge\\source\\repos\\grupo-4\\techinnovate\\dominio\\proyecto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|solutionrelative:dominio\\proyecto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|c:\\users\\jorge\\source\\repos\\grupo-4\\techinnovate\\utils\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|solutionrelative:utils\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,6 +31,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Proyecto.cs",
+              "DocumentMoniker": "C:\\Users\\jorge\\source\\repos\\grupo-4\\TechInnovate\\Dominio\\Proyecto.cs",
+              "RelativeDocumentMoniker": "Dominio\\Proyecto.cs",
+              "ToolTip": "C:\\Users\\jorge\\source\\repos\\grupo-4\\TechInnovate\\Dominio\\Proyecto.cs",
+              "RelativeToolTip": "Dominio\\Proyecto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T17:26:41.31Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Enums.cs",
               "DocumentMoniker": "C:\\Users\\jorge\\source\\repos\\grupo-4\\TechInnovate\\Utils\\Enums.cs",
               "RelativeDocumentMoniker": "Utils\\Enums.cs",
@@ -39,7 +56,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\jorge\\source\\repos\\grupo-4\\TechInnovate\\Main\\Program.cs",
               "RelativeDocumentMoniker": "Main\\Program.cs",
