@@ -1,6 +1,6 @@
 ﻿namespace TechInnovate
 {
-    enum Estado
+    public enum Estado
     {
         PLANIFICACION,
         EN_DESARROLLO,
@@ -9,17 +9,24 @@
         CANCELADO
     }
 
-    enum Tipo
+    public enum Tipo
     {
         DESARROLLO_WEB,
         DESARROLLO_MOVIL
     }
 
-    enum Tecnologia
+    public enum Tecnologia
     {
-        ANGULAR, 
+        ANGULAR,
         REACT,
         VUE_JS
     }
 
+    public enum PlataformaMovil
+    {
+        IOS,
+        ANDROID,
+        WINDOWS_PHONE
+    }
 }
+
