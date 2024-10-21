@@ -8,7 +8,6 @@
         private Estado _estadoProyecto;
         private Tipo _tipoDesarrollo;
 
-        public abstract void DuracionDelProyecto();
-        
+        abstract public void DuracionDelProyecto();
     }
 }
