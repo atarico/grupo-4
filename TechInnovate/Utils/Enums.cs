@@ -21,12 +21,5 @@
         REACT,
         VUE_JS
     }
-
-    public enum PlataformaMovil
-    {
-        IOS,
-        ANDROID,
-        WINDOWS_PHONE
-    }
 }
 
