@@ -9,7 +9,7 @@
             _tecnologia = tecnologia;
             tipoProyecto = Tipo.DESARROLLO_WEB;
         }
-
+        public DesarrolloWeb() : base() { }
         public Tecnologia Tecnologia
         {
             get { return _tecnologia; }

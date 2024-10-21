@@ -9,7 +9,7 @@
         private Estado _estadoProyecto;
         private Tipo _tipoDesarrollo;
         public Proyecto(string nombre, string cantidadDesarrolladores, DateTime fechaInicio, Estado estado, Tipo tipo){}
-
+        public Proyecto() { }
         public string Nombre
         {
             get { return _nombreProyecto; }
