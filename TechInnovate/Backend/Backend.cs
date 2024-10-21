@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Diagnostics.Contracts;
 using System.Reflection.PortableExecutable;
 
 namespace TechInnovate
@@ -55,6 +57,18 @@ namespace TechInnovate
 
         static public void MostrarProyectos()
         {
+            foreach(var proyecto in proyectosMovil)
+            {
+                Console.WriteLine($"Nombre:{proyecto.Nombre}\nCantidad de desarrolladores: {proyecto.CantidadDesarrolladores}\n" +
+                    $"Fecha de inicio: {proyecto.FechaInicio}\nEstado: {proyecto.EstadoProyecto}\n" +
+                    $"Tipo: {proyecto.TipoDesarrollo}\n");
+            }
+            foreach (var proyecto in proyectosWeb)
+            {
+                Console.WriteLine($"Nombre:{proyecto.Nombre}\nCantidad de desarrolladores: {proyecto.CantidadDesarrolladores}\n" +
+                    $"Fecha de inicio: {proyecto.FechaInicio}\nEstado: {proyecto.EstadoProyecto}\n" +
+                    $"Tipo: {proyecto.TipoDesarrollo}\nTecnologia asociada: {proyecto.Tecnologia}");
+            }
 
         }
 
@@ -65,17 +79,60 @@ namespace TechInnovate
 
             if (respuesta.ToLower().Trim() == "desarrolloweb")
             {
-                Console.WriteLine("Ingrese nombre del proyecto:");
-                string nombre = Console.ReadLine();
-                Console.WriteLine("Ingrese la cantidad de desarrolladores que requiere:");
-                int cantidadDesarrolladores = int.Parse(Console.ReadLine());
-                Console.WriteLine("Ingrese la fecha de inicio del proyecto:");
-                DateTime fechaInicio = DateTime.Parse(Console.ReadLine());
-
-
+                DesarrolloWeb unProyecto = new DesarrolloWeb();
                 
-            }
+                Console.WriteLine("Ingrese nombre del proyecto:");
+                unProyecto.Nombre = Console.ReadLine();
+                Console.WriteLine("Ingrese la cantidad de desarrolladores que requiere:");
+                unProyecto.CantidadDesarrolladores = Console.ReadLine();
+                Console.WriteLine("Ingrese la fecha de inicio del proyecto:");
+                unProyecto.FechaInicio = DateTime.Parse(Console.ReadLine());
+                unProyecto.TipoDesarrollo= Tipo.DESARROLLO_WEB;
+                Console.WriteLine("Ingrese el tipo de tecnologia asociada: 1.Angular , 2.React y 3.Vue_js");
+                int opcion = int.Parse(Console.ReadLine());
+                
+                switch (opcion)
+                {
+                    case 1:
+                    unProyecto.Tecnologia = Tecnologia.ANGULAR;
+                    break;
 
+                    case 2:
+                    unProyecto.Tecnologia = Tecnologia.REACT;
+                    break;
+
+                    case 3:
+                    unProyecto.Tecnologia = Tecnologia.VUE_JS;
+                    break;
+
+                    default:
+                    break;
+                }
+                proyectosWeb.Add(unProyecto);
+
+            }
+            else
+            {
+                DesarrolloMovil unMovil = new DesarrolloMovil();
+                Console.WriteLine("Ingrese nombre del proyecto:");
+                unMovil.Nombre = Console.ReadLine();
+                Console.WriteLine("Ingrese la cantidad de desarrolladores que requiere:");
+                unMovil.CantidadDesarrolladores = Console.ReadLine();
+                Console.WriteLine("Ingrese la fecha de inicio del proyecto:");
+                unMovil.FechaInicio = DateTime.Parse(Console.ReadLine());
+                unMovil.TipoDesarrollo = Tipo.DESARROLLO_MOVIL;
+                int ingreso = 0;
+                Console.WriteLine("Ingrese cuantas plataformas tendra el proyecto: ");
+                ingreso = int.Parse(Console.ReadLine());
+
+                for (int i = 0; i < ingreso; i++)
+                {
+                    Console.WriteLine("Ingrese el o los nombres de plataformas que desee agregar");
+                    unMovil.ListaPlataformas[i] = Console.ReadLine();
+                } 
+                
+                proyectosMovil.Add(unMovil);
+            }
 
         }
 
@@ -100,7 +157,7 @@ namespace TechInnovate
                         $"{proyectoMovil.FechaInicio}" +
                         $"{proyectoMovil.EstadoProyecto}" +
                         $"{proyectoMovil.TipoDesarrollo}");
-                    foreach(var plataforma in proyectoMovil.Plataformas)
+                    foreach(var plataforma in proyectoMovil.ListaPlataformas)
                     {
                         writer.WriteLine(plataforma);
                     }
