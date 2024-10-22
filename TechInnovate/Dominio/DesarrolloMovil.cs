@@ -4,7 +4,7 @@ namespace TechInnovate
 {
     public class DesarrolloMovil : Proyecto
     {
-        private string [] _listaPlataformas;
+        private string[] _listaPlataformas = new string[3];
 
         public DesarrolloMovil(string nombre, string cantidadDesarrolladores, DateTime fechaInicio, Estado estado, Tipo tipoProyecto, string[] plataformas)
             : base(nombre, cantidadDesarrolladores, fechaInicio, estado, tipoProyecto)
