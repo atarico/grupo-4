@@ -24,7 +24,7 @@
                             DateTime fechaInicio = DateTime.Parse(datos[2]);
                             Estado estadoProyecto = (Estado)Enum.Parse(typeof(Estado), datos[3]);
                             Tipo tipoDesarrollo = (Tipo)Enum.Parse(typeof(Tipo), datos[4]);
-                            string[] plataformas = datos[5].Split(';');
+                            List<string> plataformas = datos[5].Split(';').ToList();
 
                             proyectosMovil.Add(new DesarrolloMovil(nombre, cantidadDesarrolladores, fechaInicio, estadoProyecto, tipoDesarrollo, plataformas));
                         }
@@ -124,19 +124,23 @@
                 unMovil.Nombre = Console.ReadLine();
                 Console.WriteLine("Ingrese la cantidad de desarrolladores que requiere:");
                 unMovil.CantidadDesarrolladores = Console.ReadLine();
-                Console.WriteLine("Ingrese la fecha de inicio del proyecto:");
+                Console.WriteLine("Ingrese la fecha de inicio del proyecto: (DD/MM/AAAA)");
                 unMovil.FechaInicio = DateTime.Parse(Console.ReadLine());
                 unMovil.TipoDesarrollo = Tipo.DESARROLLO_MOVIL;
-                int ingreso = 0;
-                Console.WriteLine("Ingrese cuantas plataformas tendra el proyecto: ");
-                ingreso = int.Parse(Console.ReadLine());
-
-                for (int i = 0; i < ingreso; i++)
+                string seleccion = "";
+                while(seleccion.Trim().ToLower() != "n")
                 {
-                    Console.WriteLine("Ingrese el o los nombres de plataformas que desee agregar");
-                    unMovil.ListaPlataformas[i] = Console.ReadLine();
-                } 
-                
+                    Console.WriteLine("Desea agregar alguna plataforma a la lista?: (S/N)");
+                    string eleccion = Console.ReadLine();
+                    if(eleccion.ToLower().Trim() == "n") { break; }
+                    else
+                    {
+                        Console.WriteLine("Escriba el nombre de la plataforma: ");
+                        string agregar = Console.ReadLine();
+                        unMovil.ListaPlataformas.Add(agregar);
+                    }
+                    
+                }
                 proyectosMovil.Add(unMovil);
             }
             else
@@ -146,6 +150,20 @@
             }
             Console.Clear();
         }
+        static public void MostrarProyectosWeb()
+        {
+            foreach (var proyectoWeb in proyectosWeb)
+            {
+                Console.WriteLine(proyectoWeb.Nombre);
+            }
+        }
+        static public void MostrarProyectosMovil()
+        {
+            foreach (var proyectoMovil in proyectosMovil)
+            {
+                Console.WriteLine(proyectoMovil.Nombre);
+            }
+        }
 
         static public void EliminarProyecto()
         {
@@ -153,10 +171,7 @@
             string respuesta = Console.ReadLine();
             if(respuesta.Trim().ToLower() == "a")
             {
-                foreach (var proyectoWeb in proyectosWeb)
-                {
-                    Console.WriteLine(proyectoWeb.Nombre);
-                }
+                MostrarProyectosWeb();
                 bool encontrado = false;
                 Console.WriteLine("Cual desea eliminar?");
                 DesarrolloWeb proyecto = new DesarrolloWeb();
@@ -179,10 +194,7 @@
             }
             else if(respuesta.Trim().ToLower() == "b")
             {
-                foreach (var proyectoMovil in proyectosMovil)
-                {
-                    Console.WriteLine(proyectoMovil.Nombre);
-                }
+                MostrarProyectosMovil();
                 bool encontrado = false;
                 Console.WriteLine("Cual desea eliminar?");
                 string eliminacion = Console.ReadLine();
@@ -208,6 +220,144 @@
 
         static public void ModificarProyecto()
         {
+            Console.WriteLine("Modificar proyecto:  A) Web    B) Movil");
+            string respuesta = Console.ReadLine();
+            if(respuesta.Trim().ToLower() == "a")
+            {
+                MostrarProyectosWeb();
+                bool encontrado = false;
+                Console.WriteLine("Escriba el nombre del proyecto a modificar:");
+                string modificacion = Console.ReadLine();
+                foreach(var proyectoWeb in proyectosWeb)
+                {
+                    if (modificacion.Trim().ToLower() == proyectoWeb.Nombre.Trim().ToLower())
+                    {
+                        encontrado = true;
+                        Console.WriteLine("Ingrese el nombre del proyecto:");
+                        proyectoWeb.Nombre = Console.ReadLine();
+                        Console.WriteLine("Ingrese la cantidad de desarrolladores: ");
+                        proyectoWeb.CantidadDesarrolladores = Console.ReadLine();
+                        Console.WriteLine("Ingrese la fecha de inicio: (DD/MM/AAAA)");
+                        proyectoWeb.FechaInicio = DateTime.Parse(Console.ReadLine());
+                        Console.WriteLine("Ingrese el estado del proyecto:" +
+                            "1. Planificacion" +
+                            "2. En desarrollo" +
+                            "3. En pruebas" +
+                            "4. Completado" +
+                            "5. Cancelado");
+                        int opcion = int.Parse(Console.ReadLine());
+                        switch (opcion)
+                        {
+                            case 1:
+                                proyectoWeb.EstadoProyecto = Estado.PLANIFICACION;
+                                break;
+                            case 2:
+                                proyectoWeb.EstadoProyecto = Estado.EN_DESARROLLO;
+                                break;
+                            case 3:
+                                proyectoWeb.EstadoProyecto = Estado.EN_PRUEBAS;
+                                break;
+                            case 4:
+                                proyectoWeb.EstadoProyecto = Estado.COMPLETADO;
+                                break;
+                            case 5:
+                                proyectoWeb.EstadoProyecto = Estado.CANCELADO;
+                                break;
+                            default:
+                                Console.WriteLine("Opcion invalida...");
+                                break;
+                        }
+                        Console.WriteLine("Ingrese la tecnología del proyecto:" +
+                            "1. Angular" +
+                            "2. React" +
+                            "3. Vue.Js ");
+                        int opcionTecnologia = int.Parse(Console.ReadLine());
+                        switch (opcionTecnologia)
+                        {
+                            case 1:
+                                proyectoWeb.Tecnologia = Tecnologia.ANGULAR;
+                                break;
+                            case 2:
+                                proyectoWeb.Tecnologia = Tecnologia.REACT;
+                                break;
+                            case 3:
+                                proyectoWeb.Tecnologia = Tecnologia.VUE_JS;
+                                    break;
+                            default:
+                                Console.WriteLine("Opcion incorrecta...");
+                                break;
+
+                        }
+                    }
+                }
+                if (!encontrado)
+                {
+                    Console.WriteLine("Proyecto no encontrado...");
+                }
+                else
+                {
+                    Console.WriteLine("Modificado con éxito!");
+                }
+                
+            }
+            else if(respuesta.Trim().ToLower() == "b")
+            {
+                MostrarProyectosMovil();
+                Console.WriteLine("Seleccione el proyecto introduciendo el nombre: ");
+                string nombre = Console.ReadLine();
+                bool encontrado = false;
+                foreach(var proyecto in proyectosMovil)
+                {
+                    if(proyecto.Nombre.Trim().ToLower() == nombre.Trim().ToLower())
+                    {
+                        encontrado = true;
+                        Console.WriteLine("Ingrese el nombre del proyecto:");
+                        proyecto.Nombre = Console.ReadLine();
+                        Console.WriteLine("Ingrese la cantidad de desarrolladores: ");
+                        proyecto.CantidadDesarrolladores = Console.ReadLine();
+                        Console.WriteLine("Ingrese la fecha de inicio: (DD/MM/AAAA)");
+                        proyecto.FechaInicio = DateTime.Parse(Console.ReadLine());
+                        Console.WriteLine("Ingrese el estado del proyecto:" +
+                            "1. Planificacion" +
+                            "2. En desarrollo" +
+                            "3. En pruebas" +
+                            "4. Completado" +
+                            "5. Cancelado");
+                        int opcion = int.Parse(Console.ReadLine());
+                        switch (opcion)
+                        {
+                            case 1:
+                                proyecto.EstadoProyecto = Estado.PLANIFICACION;
+                                break;
+                            case 2:
+                                proyecto.EstadoProyecto = Estado.EN_DESARROLLO;
+                                break;
+                            case 3:
+                                proyecto.EstadoProyecto = Estado.EN_PRUEBAS;
+                                break;
+                            case 4:
+                                proyecto.EstadoProyecto = Estado.COMPLETADO;
+                                break;
+                            case 5:
+                                proyecto.EstadoProyecto = Estado.CANCELADO;
+                                break;
+                            default:
+                                Console.WriteLine("Opcion invalida...");
+                                break;
+                        }
+                    }
+                }
+                if (!encontrado) { Console.WriteLine("Proyecto no encontrado..."); }
+                else
+                {
+                    Console.WriteLine("Modificado con éxito!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Opcion invalida...");
+                Console.ReadKey();
+            }
             Console.Clear();
         }
 
@@ -217,17 +367,15 @@
             {
                 foreach (var proyectoMovil in proyectosMovil)
                 {
+                    string plataformasConcatenadas = string.Join(";", proyectoMovil.ListaPlataformas);
                     writer.WriteLine($"{proyectoMovil.Nombre}," +
-                        $"{proyectoMovil.CantidadDesarrolladores}," +
-                        $"{proyectoMovil.FechaInicio}," +
-                        $"{proyectoMovil.EstadoProyecto}," +
-                        $"{proyectoMovil.TipoDesarrollo}");
-                    foreach (var plataforma in proyectoMovil.ListaPlataformas)
-                    {
-                        writer.WriteLine(plataforma + ",");
-                    }
+                                     $"{proyectoMovil.CantidadDesarrolladores}," +
+                                     $"{proyectoMovil.FechaInicio.ToString("yyyy-MM-dd")}," +
+                                     $"{proyectoMovil.EstadoProyecto}," +
+                                     $"{proyectoMovil.TipoDesarrollo}," +
+                                     $"{plataformasConcatenadas}");
                 }
-            }
+            }  
             using (StreamWriter writer2 = new StreamWriter(archivoProyectosWeb))
             {
                 foreach (var proyectoWeb in proyectosWeb)
