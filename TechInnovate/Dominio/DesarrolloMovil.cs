@@ -6,7 +6,7 @@ namespace TechInnovate
     {
         private List<string> _listaPlataformas = new List<string>();
 
-        public DesarrolloMovil(string nombre, string cantidadDesarrolladores, DateTime fechaInicio, Estado estado, Tipo tipoProyecto, List<string> plataformas)
+        public DesarrolloMovil(string nombre, int cantidadDesarrolladores, DateTime fechaInicio, Estado estado, Tipo tipoProyecto, List<string> plataformas)
             : base(nombre, cantidadDesarrolladores, fechaInicio, estado, tipoProyecto)
         {
             _listaPlataformas = plataformas;

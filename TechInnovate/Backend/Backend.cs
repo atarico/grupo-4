@@ -19,8 +19,8 @@
                         try
                         {
                             string[] datos = linea.Split(',');
-                            string nombre = datos[0];
-                            string cantidadDesarrolladores = datos[1];
+                            string nombre = datos[0].ToString();
+                            int cantidadDesarrolladores = int.Parse(datos[1]);
                             DateTime fechaInicio = DateTime.Parse(datos[2]);
                             Estado estadoProyecto = (Estado)Enum.Parse(typeof(Estado), datos[3]);
                             Tipo tipoDesarrollo = (Tipo)Enum.Parse(typeof(Tipo), datos[4]);
@@ -44,8 +44,8 @@
                     while ((linea = reader.ReadLine()) != null)
                     {
                         string[] datos = linea.Split(',');
-                        string nombre = datos[0];
-                        string cantidadDesarrolladores = datos[1];
+                        string nombre = datos[0].ToString();
+                        int cantidadDesarrolladores = int.Parse(datos[1]);
                         DateTime fechaInicio = DateTime.Parse(datos[2]);
                         Estado estadoProyecto = (Estado)Enum.Parse(typeof(Estado), datos[3]);
                         Tipo tipoDesarrollo = (Tipo)Enum.Parse(typeof(Tipo), datos[4]);
@@ -60,14 +60,28 @@
 
         static public void MostrarProyectos()
         {
-            Console.WriteLine("Proyectos movil: \n");
-            foreach(var proyecto in proyectosMovil)
+            Console.WriteLine("Proyectos móviles: \n");
+            foreach (var proyecto in proyectosMovil)
             {
-                Console.WriteLine($"Nombre:{proyecto.Nombre}\nCantidad de desarrolladores: {proyecto.CantidadDesarrolladores}\n" +
-                    $"Fecha de inicio: {proyecto.FechaInicio}\nEstado: {proyecto.EstadoProyecto}\n" +
-                    $"Tipo: {proyecto.TipoDesarrollo}\n");
+                // Imprimir los datos principales del proyecto
+                Console.WriteLine($"Nombre: {proyecto.Nombre}\n" +
+                                  $"Cantidad de desarrolladores: {proyecto.CantidadDesarrolladores}\n" +
+                                  $"Fecha de inicio: {proyecto.FechaInicio.ToString("yyyy-MM-dd")}\n" +
+                                  $"Estado: {proyecto.EstadoProyecto}\n" +
+                                  $"Tipo: {proyecto.TipoDesarrollo}");
+
+                // Imprimir las plataformas asociadas
+                Console.WriteLine("Plataformas:");
+                foreach (var plataforma in proyecto.ListaPlataformas)
+                {
+                    Console.WriteLine($"- {plataforma}");
+                }
+
+                // Línea separadora entre proyectos
+                Console.WriteLine("\n----------------------------\n");
             }
-            Console.WriteLine("\n");
+
+        Console.WriteLine("\n");
             Console.WriteLine("Proyectos web: \n");
             foreach (var proyectoWeb in proyectosWeb)
             {
@@ -90,7 +104,7 @@
                 Console.WriteLine("Ingrese nombre del proyecto:");
                 unProyecto.Nombre = Console.ReadLine();
                 Console.WriteLine("Ingrese la cantidad de desarrolladores que requiere:");
-                unProyecto.CantidadDesarrolladores = Console.ReadLine();
+                unProyecto.CantidadDesarrolladores = int.Parse(Console.ReadLine());
                 Console.WriteLine("Ingrese la fecha de inicio del proyecto:");
                 unProyecto.FechaInicio = DateTime.Parse(Console.ReadLine());
                 unProyecto.TipoDesarrollo= Tipo.DESARROLLO_WEB;
@@ -123,7 +137,7 @@
                 Console.WriteLine("Ingrese nombre del proyecto:");
                 unMovil.Nombre = Console.ReadLine();
                 Console.WriteLine("Ingrese la cantidad de desarrolladores que requiere:");
-                unMovil.CantidadDesarrolladores = Console.ReadLine();
+                unMovil.CantidadDesarrolladores = int.Parse(Console.ReadLine());
                 Console.WriteLine("Ingrese la fecha de inicio del proyecto: (DD/MM/AAAA)");
                 unMovil.FechaInicio = DateTime.Parse(Console.ReadLine());
                 unMovil.TipoDesarrollo = Tipo.DESARROLLO_MOVIL;
@@ -219,7 +233,10 @@
         }
 
         static public void ModificarProyecto()
+
         {
+            if (proyectosMovil == null) proyectosMovil = new List<DesarrolloMovil>();
+            if (proyectosWeb == null) proyectosWeb = new List<DesarrolloWeb>();
             Console.WriteLine("Modificar proyecto:  A) Web    B) Movil");
             string respuesta = Console.ReadLine();
             if(respuesta.Trim().ToLower() == "a")
@@ -236,7 +253,7 @@
                         Console.WriteLine("Ingrese el nombre del proyecto:");
                         proyectoWeb.Nombre = Console.ReadLine();
                         Console.WriteLine("Ingrese la cantidad de desarrolladores: ");
-                        proyectoWeb.CantidadDesarrolladores = Console.ReadLine();
+                        proyectoWeb.CantidadDesarrolladores = int.Parse(Console.ReadLine());
                         Console.WriteLine("Ingrese la fecha de inicio: (DD/MM/AAAA)");
                         proyectoWeb.FechaInicio = DateTime.Parse(Console.ReadLine());
                         Console.WriteLine("Ingrese el estado del proyecto:" +
@@ -314,7 +331,7 @@
                         Console.WriteLine("Ingrese el nombre del proyecto:");
                         proyecto.Nombre = Console.ReadLine();
                         Console.WriteLine("Ingrese la cantidad de desarrolladores: ");
-                        proyecto.CantidadDesarrolladores = Console.ReadLine();
+                        proyecto.CantidadDesarrolladores = int.Parse(Console.ReadLine());
                         Console.WriteLine("Ingrese la fecha de inicio: (DD/MM/AAAA)");
                         proyecto.FechaInicio = DateTime.Parse(Console.ReadLine());
                         Console.WriteLine("Ingrese el estado del proyecto:" +
@@ -345,6 +362,15 @@
                                 Console.WriteLine("Opcion invalida...");
                                 break;
                         }
+                        Console.WriteLine("¿Desea modificar las plataformas? (s/n)");
+                        string modificarPlataformas = Console.ReadLine().Trim().ToLower();
+                        if (modificarPlataformas == "s")
+                        {
+                            Console.WriteLine("Ingrese las plataformas separadas por ';':");
+                            string plataformasInput = Console.ReadLine();
+                            proyecto.ListaPlataformas = plataformasInput.Split(';').ToList();
+                        }
+                        break;
                     }
                 }
                 if (!encontrado) { Console.WriteLine("Proyecto no encontrado..."); }
