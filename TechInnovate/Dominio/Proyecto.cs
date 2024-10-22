@@ -4,11 +4,16 @@
     {
 
         private string _nombreProyecto;
-        private string _cantidadDesarrolladores;
+        private int _cantidadDesarrolladores;
         private DateTime _fechaInicio;
         private Estado _estadoProyecto;
         private Tipo _tipoDesarrollo;
-        public Proyecto(string nombre, string cantidadDesarrolladores, DateTime fechaInicio, Estado estado, Tipo tipo){}
+        public Proyecto(string nombre, int cantidadDesarrolladores, DateTime fechaInicio, Estado estado, Tipo tipo)
+        {
+            _nombreProyecto = nombre;
+            _cantidadDesarrolladores = cantidadDesarrolladores;
+            _fechaInicio = fechaInicio;
+        }
         public Proyecto() { }
         public string Nombre
         {
@@ -16,7 +21,7 @@
             set { _nombreProyecto = value; }
         }
 
-        public string CantidadDesarrolladores
+        public int CantidadDesarrolladores
         {
             get { return _cantidadDesarrolladores; }
             set { _cantidadDesarrolladores = value; }

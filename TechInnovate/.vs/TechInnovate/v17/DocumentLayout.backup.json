@@ -7,20 +7,16 @@
       "RelativeMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|solutionrelative:backend\\backend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|c:\\users\\mateo\\source\\repos\\atarico\\grupo-4\\techinnovate\\utils\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|solutionrelative:utils\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|c:\\users\\mateo\\source\\repos\\atarico\\grupo-4\\techinnovate\\dominio\\desarrollomovil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|solutionrelative:dominio\\desarrollomovil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|c:\\users\\mateo\\source\\repos\\atarico\\grupo-4\\techinnovate\\main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|solutionrelative:main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|c:\\users\\mateo\\source\\repos\\atarico\\grupo-4\\techinnovate\\dominio\\desarrolloweb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|solutionrelative:dominio\\desarrolloweb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|c:\\users\\mateo\\source\\repos\\atarico\\grupo-4\\techinnovate\\dominio\\proyecto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|solutionrelative:dominio\\proyecto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|c:\\users\\mateo\\source\\repos\\atarico\\grupo-4\\techinnovate\\main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59AE8D64-2647-4FEA-A4CB-A8AA1F3F4AEE}|TechInnovate.csproj|solutionrelative:main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,7 +36,7 @@
               "RelativeDocumentMoniker": "Main\\Program.cs",
               "ToolTip": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Main\\Program.cs",
               "RelativeToolTip": "Main\\Program.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAcwBIAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-20T22:50:23.495Z",
               "IsPinned": true,
@@ -52,9 +48,9 @@
               "Title": "Backend.cs",
               "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Backend\\Backend.cs",
               "RelativeDocumentMoniker": "Backend\\Backend.cs",
-              "ToolTip": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Backend\\Backend.cs*",
-              "RelativeToolTip": "Backend\\Backend.cs*",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAmwIsAAAA+AAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Backend\\Backend.cs",
+              "RelativeToolTip": "Backend\\Backend.cs",
+              "ViewState": "AgIAAD0BAAAAAAAAAAAWwEcBAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-21T18:31:04.869Z",
               "IsPinned": true,
@@ -67,40 +63,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Enums.cs",
-              "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Utils\\Enums.cs",
-              "RelativeDocumentMoniker": "Utils\\Enums.cs",
-              "ToolTip": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Utils\\Enums.cs",
-              "RelativeToolTip": "Utils\\Enums.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAFAAAAAAAAAA==",
+              "Title": "DesarrolloWeb.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Dominio\\DesarrolloWeb.cs",
+              "RelativeDocumentMoniker": "Dominio\\DesarrolloWeb.cs",
+              "ToolTip": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Dominio\\DesarrolloWeb.cs",
+              "RelativeToolTip": "Dominio\\DesarrolloWeb.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T19:31:32.961Z",
+              "WhenOpened": "2024-10-22T21:30:07.972Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DesarrolloMovil.cs",
-              "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Dominio\\DesarrolloMovil.cs",
-              "RelativeDocumentMoniker": "Dominio\\DesarrolloMovil.cs",
-              "ToolTip": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Dominio\\DesarrolloMovil.cs",
-              "RelativeToolTip": "Dominio\\DesarrolloMovil.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAmwBQAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T00:40:26.103Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Proyecto.cs",
               "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Dominio\\Proyecto.cs",
               "RelativeDocumentMoniker": "Dominio\\Proyecto.cs",
               "ToolTip": "C:\\Users\\mateo\\source\\repos\\atarico\\grupo-4\\TechInnovate\\Dominio\\Proyecto.cs",
               "RelativeToolTip": "Dominio\\Proyecto.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwA8AAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T00:35:24.308Z"
+              "WhenOpened": "2024-10-22T21:11:43.194Z",
+              "EditorCaption": ""
             }
           ]
         }
