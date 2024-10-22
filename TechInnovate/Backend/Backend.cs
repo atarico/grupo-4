@@ -1,14 +1,10 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Diagnostics.Contracts;
-using System.Reflection.PortableExecutable;
-
-namespace TechInnovate
+﻿namespace TechInnovate
 {
     public class Backend
     {
         static List<DesarrolloMovil> proyectosMovil = new List<DesarrolloMovil>();
         static List<DesarrolloWeb> proyectosWeb = new List<DesarrolloWeb>();
+
         static string archivoProyectosMovil = "proyectosMovil.txt";
         static string archivoProyectosWeb = "proyectosWeb.txt";
         static public void CargarDatos()
@@ -20,15 +16,22 @@ namespace TechInnovate
                     string linea;
                     while ((linea = reader.ReadLine()) != null)
                     {
-                        string[] datos = linea.Split('|');
-                        string nombre = datos[0];
-                        string cantidadDesarrolladores = datos[1];
-                        DateTime fechaInicio = DateTime.Parse(datos[2]);
-                        Estado estadoProyecto = (Estado)Enum.Parse(typeof(Estado), datos[3]);
-                        Tipo tipoDesarrollo = (Tipo)Enum.Parse(typeof(Tipo), datos[4]);
-                        string[] plataformas = datos[5].Split(',');
+                        try
+                        {
+                            string[] datos = linea.Split(',');
+                            string nombre = datos[0];
+                            string cantidadDesarrolladores = datos[1];
+                            DateTime fechaInicio = DateTime.Parse(datos[2]);
+                            Estado estadoProyecto = (Estado)Enum.Parse(typeof(Estado), datos[3]);
+                            Tipo tipoDesarrollo = (Tipo)Enum.Parse(typeof(Tipo), datos[4]);
+                            string[] plataformas = datos[5].Split(';');
 
-                        proyectosMovil.Add(new DesarrolloMovil(nombre, cantidadDesarrolladores, fechaInicio, estadoProyecto, tipoDesarrollo, plataformas));
+                            proyectosMovil.Add(new DesarrolloMovil(nombre, cantidadDesarrolladores, fechaInicio, estadoProyecto, tipoDesarrollo, plataformas));
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error al procesar la línea: {linea} - {ex.Message}");
+                        }
                     }
                 }
             }
@@ -37,10 +40,10 @@ namespace TechInnovate
             {
                 using (StreamReader reader = new StreamReader(archivoProyectosWeb))
                 {
-                    string linea2;
-                    while ((linea2 = reader.ReadLine()) != null)
+                    string linea;
+                    while ((linea = reader.ReadLine()) != null)
                     {
-                        string[] datos = linea2.Split('|');
+                        string[] datos = linea.Split(',');
                         string nombre = datos[0];
                         string cantidadDesarrolladores = datos[1];
                         DateTime fechaInicio = DateTime.Parse(datos[2]);
@@ -51,33 +54,36 @@ namespace TechInnovate
                         proyectosWeb.Add(new DesarrolloWeb(nombre, cantidadDesarrolladores, fechaInicio, estadoProyecto, tipoDesarrollo, tecnologia));
                     }
                 }
-                
             }
         }
 
+
         static public void MostrarProyectos()
         {
+            Console.WriteLine("Proyectos movil: \n");
             foreach(var proyecto in proyectosMovil)
             {
                 Console.WriteLine($"Nombre:{proyecto.Nombre}\nCantidad de desarrolladores: {proyecto.CantidadDesarrolladores}\n" +
                     $"Fecha de inicio: {proyecto.FechaInicio}\nEstado: {proyecto.EstadoProyecto}\n" +
                     $"Tipo: {proyecto.TipoDesarrollo}\n");
             }
-            foreach (var proyecto in proyectosWeb)
+            Console.WriteLine("\n");
+            Console.WriteLine("Proyectos web: \n");
+            foreach (var proyectoWeb in proyectosWeb)
             {
-                Console.WriteLine($"Nombre:{proyecto.Nombre}\nCantidad de desarrolladores: {proyecto.CantidadDesarrolladores}\n" +
-                    $"Fecha de inicio: {proyecto.FechaInicio}\nEstado: {proyecto.EstadoProyecto}\n" +
-                    $"Tipo: {proyecto.TipoDesarrollo}\nTecnologia asociada: {proyecto.Tecnologia}");
+                Console.WriteLine($"Nombre:{proyectoWeb.Nombre}\nCantidad de desarrolladores: {proyectoWeb.CantidadDesarrolladores}\n" +
+                    $"Fecha de inicio: {proyectoWeb.FechaInicio}\nEstado: {proyectoWeb.EstadoProyecto}\n" +
+                    $"Tipo: {proyectoWeb.TipoDesarrollo}\nTecnologia asociada: {proyectoWeb.Tecnologia}\n");
             }
-
+            Console.WriteLine("\n");
         }
 
         static public void CrearProyecto()
         {
-            Console.WriteLine("Tipee que tipo de proyecto desea crear: Desarrolo Web o Desarrolo Movil");
+            Console.WriteLine("Tipee que tipo de proyecto desea crear: A) Desarrolo Web o B) Desarrolo Movil");
             string respuesta = Console.ReadLine();
 
-            if (respuesta.ToLower().Trim() == "desarrolloweb")
+            if (respuesta.ToLower().Trim() == "a")
             {
                 DesarrolloWeb unProyecto = new DesarrolloWeb();
                 
@@ -111,7 +117,7 @@ namespace TechInnovate
                 proyectosWeb.Add(unProyecto);
 
             }
-            else
+            else if(respuesta.Trim().ToLower() == "b")
             {
                 DesarrolloMovil unMovil = new DesarrolloMovil();
                 Console.WriteLine("Ingrese nombre del proyecto:");
@@ -133,17 +139,76 @@ namespace TechInnovate
                 
                 proyectosMovil.Add(unMovil);
             }
-
+            else
+            {
+                Console.WriteLine("Seleccion incorrecta...");
+                Console.ReadLine();
+            }
+            Console.Clear();
         }
 
         static public void EliminarProyecto()
         {
-
+            Console.WriteLine("Desea eliminar un proyecto web o movil? A) Web  B) Movil");
+            string respuesta = Console.ReadLine();
+            if(respuesta.Trim().ToLower() == "a")
+            {
+                foreach (var proyectoWeb in proyectosWeb)
+                {
+                    Console.WriteLine(proyectoWeb.Nombre);
+                }
+                bool encontrado = false;
+                Console.WriteLine("Cual desea eliminar?");
+                DesarrolloWeb proyecto = new DesarrolloWeb();
+                string eliminacion = Console.ReadLine();
+                foreach (var proyectoWeb in proyectosWeb)
+                {
+                    if(eliminacion.Trim().ToLower() == proyectoWeb.Nombre)
+                    {
+                        encontrado = true;
+                        proyecto = proyectoWeb;
+                        
+                    }
+                }
+                if (!encontrado) { Console.WriteLine("No fue encontrado ese proyecto, escribalo correctamente."); }
+                else 
+                {
+                    proyectosWeb.Remove(proyecto);
+                    Console.WriteLine("Eliminado correctamente."); 
+                }
+            }
+            else if(respuesta.Trim().ToLower() == "b")
+            {
+                foreach (var proyectoMovil in proyectosMovil)
+                {
+                    Console.WriteLine(proyectoMovil.Nombre);
+                }
+                bool encontrado = false;
+                Console.WriteLine("Cual desea eliminar?");
+                string eliminacion = Console.ReadLine();
+                DesarrolloMovil proyecto = new DesarrolloMovil();
+                foreach (var proyectoMovil in proyectosMovil)
+                {
+                    if (eliminacion.Trim().ToLower() == proyectoMovil.Nombre)
+                    {
+                        encontrado = true;
+                        proyecto = proyectoMovil;
+                    }
+                }
+                if (!encontrado) { Console.WriteLine("No fue encontrado ese proyecto, escribalo correctamente."); }
+                else 
+                {
+                    proyectosMovil.Remove(proyecto);
+                    Console.WriteLine("Eliminado correctamente."); 
+                }
+            }
+            else { Console.WriteLine("Opcion incorrecta..."); Console.ReadKey(); }
+            
         }
 
         static public void ModificarProyecto()
         {
-
+            Console.Clear();
         }
 
         static public void GuardarDatos()
@@ -152,27 +217,28 @@ namespace TechInnovate
             {
                 foreach (var proyectoMovil in proyectosMovil)
                 {
-                    writer.WriteLine($"{proyectoMovil.Nombre}" +
-                        $"{proyectoMovil.CantidadDesarrolladores}" +
-                        $"{proyectoMovil.FechaInicio}" +
-                        $"{proyectoMovil.EstadoProyecto}" +
+                    writer.WriteLine($"{proyectoMovil.Nombre}," +
+                        $"{proyectoMovil.CantidadDesarrolladores}," +
+                        $"{proyectoMovil.FechaInicio}," +
+                        $"{proyectoMovil.EstadoProyecto}," +
                         $"{proyectoMovil.TipoDesarrollo}");
-                    foreach(var plataforma in proyectoMovil.ListaPlataformas)
+                    foreach (var plataforma in proyectoMovil.ListaPlataformas)
                     {
-                        writer.WriteLine(plataforma);
+                        writer.WriteLine(plataforma + ",");
                     }
                 }
-
-                foreach(var proyectoWeb in proyectosWeb)
+            }
+            using (StreamWriter writer2 = new StreamWriter(archivoProyectosWeb))
+            {
+                foreach (var proyectoWeb in proyectosWeb)
                 {
-                    writer.WriteLine($"{proyectoWeb.Nombre}" +
-                        $"{proyectoWeb.CantidadDesarrolladores}" +
-                        $"{proyectoWeb.FechaInicio}" +
-                        $"{proyectoWeb.EstadoProyecto}" +
-                        $"{proyectoWeb.TipoDesarrollo}" +
-                        $"{proyectoWeb.Tecnologia}");
+                    writer2.WriteLine($"{proyectoWeb.Nombre},{proyectoWeb.CantidadDesarrolladores},{proyectoWeb.FechaInicio}," +
+                                      $"{proyectoWeb.EstadoProyecto}," +
+                                      $"{proyectoWeb.TipoDesarrollo}," +
+                                      $"{proyectoWeb.Tecnologia}");
                 }
             }
+
         }
 
     }
