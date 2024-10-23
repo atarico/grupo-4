@@ -233,8 +233,6 @@
                     catch (FormatException e) { Console.WriteLine(e.Message); }
                     finally { Console.Clear(); }
                 }
-                        
-                unMovil.FechaInicio = DateTime.Parse(Console.ReadLine());
                 unMovil.TipoDesarrollo = Tipo.DESARROLLO_MOVIL;
                 string seleccion = "";
                 while(seleccion.Trim().ToLower() != "n")
@@ -255,7 +253,6 @@
             else
             {
                 Console.WriteLine("Seleccion incorrecta...");
-                Console.ReadLine();
             }
             Console.Clear();
         }
