@@ -57,6 +57,13 @@
             }
         }
 
+        static public void EstimarDuracionProyecto()
+        {
+            Console.WriteLine("Su proyecto será web o movil?    A) Web   B) Movil");
+            string seleccion = Console.ReadLine().Trim().ToLower();
+            if(seleccion == "a") { DesarrolloWeb dw = new DesarrolloWeb();dw.DuracionDelProyecto(); }
+            if (seleccion == "b") { DesarrolloMovil dm = new DesarrolloMovil(); dm.DuracionDelProyecto(); }
+        }
 
         static public void MostrarProyectos()
         {
@@ -92,6 +99,32 @@
             Console.WriteLine("\n");
         }
 
+        static public void MostrarProyectosCompletados()
+        {
+            Console.WriteLine("Proyectos movil:\n");
+            foreach (var proyectoMovil in proyectosMovil)
+            {
+                if (proyectoMovil.EstadoProyecto == Estado.COMPLETADO)
+                {
+                    Console.WriteLine(proyectoMovil.Nombre);
+                    Console.WriteLine("\n");
+                }
+            }
+            Console.WriteLine("---------------------------");
+            Console.WriteLine("\n");
+            Console.WriteLine("Proyectos web:\n");
+            foreach (var proyectoWeb in proyectosWeb)
+            {
+                if (proyectoWeb.EstadoProyecto == Estado.COMPLETADO) 
+                {
+                    Console.WriteLine(proyectoWeb.Nombre);
+                    Console.WriteLine("\n");
+                }
+                
+            }
+        Console.ReadLine();
+        }
+
         static public void CrearProyecto()
         {
             Console.WriteLine("Tipee que tipo de proyecto desea crear: A) Desarrolo Web o B) Desarrolo Movil");
@@ -103,31 +136,68 @@
                 
                 Console.WriteLine("Ingrese nombre del proyecto:");
                 unProyecto.Nombre = Console.ReadLine();
-                Console.WriteLine("Ingrese la cantidad de desarrolladores que requiere:");
-                unProyecto.CantidadDesarrolladores = int.Parse(Console.ReadLine());
-                Console.WriteLine("Ingrese la fecha de inicio del proyecto:");
-                unProyecto.FechaInicio = DateTime.Parse(Console.ReadLine());
-                unProyecto.TipoDesarrollo= Tipo.DESARROLLO_WEB;
-                Console.WriteLine("Ingrese el tipo de tecnologia asociada: 1.Angular , 2.React y 3.Vue_js");
-                int opcion = int.Parse(Console.ReadLine());
-                
-                switch (opcion)
+                //Manejando excepciones (B   <-- carita con lentes
+                bool verdad = true;
+                while (verdad) 
                 {
-                    case 1:
-                    unProyecto.Tecnologia = Tecnologia.ANGULAR;
-                    break;
-
-                    case 2:
-                    unProyecto.Tecnologia = Tecnologia.REACT;
-                    break;
-
-                    case 3:
-                    unProyecto.Tecnologia = Tecnologia.VUE_JS;
-                    break;
-
-                    default:
-                    break;
+                    try
+                    {
+                        Console.WriteLine("Ingrese la cantidad de desarrolladores que requiere:");
+                        unProyecto.CantidadDesarrolladores = int.Parse(Console.ReadLine());
+                        verdad = false;
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    finally { Console.Clear(); }
                 }
+                verdad = true;
+                while (verdad)
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingrese la fecha de inicio del proyecto: (DD/MM/AAAA)");
+                        unProyecto.FechaInicio = DateTime.Parse(Console.ReadLine());
+                        verdad = false;
+                    }
+                    catch (FormatException e) { Console.WriteLine(e.Message); }
+                    finally { Console.Clear(); }
+                }
+                unProyecto.TipoDesarrollo= Tipo.DESARROLLO_WEB;
+                verdad = true;
+                while (verdad)
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingrese el tipo de tecnologia asociada: 1.Angular , 2.React y 3.Vue_js");
+                        int opcion = int.Parse(Console.ReadLine());
+                        if(opcion <= 0 || opcion >= 4) { Console.WriteLine("Seleccione una opcion valida..."); }
+                        else
+                        {
+                            switch (opcion)
+                            {
+                                case 1:
+                                    unProyecto.Tecnologia = Tecnologia.ANGULAR;
+                                    break;
+
+                                case 2:
+                                    unProyecto.Tecnologia = Tecnologia.REACT;
+                                    break;
+
+                                case 3:
+                                    unProyecto.Tecnologia = Tecnologia.VUE_JS;
+                                    break;
+
+                                default:
+                                    Console.WriteLine("No se ha seleccionado ninguna tecnologia...\n");
+                                    break;
+                            }
+                            verdad = false;
+                        }
+                        
+                    }catch(FormatException e) { Console.WriteLine(e.Message); }
+                }    
                 proyectosWeb.Add(unProyecto);
 
             }
@@ -136,9 +206,34 @@
                 DesarrolloMovil unMovil = new DesarrolloMovil();
                 Console.WriteLine("Ingrese nombre del proyecto:");
                 unMovil.Nombre = Console.ReadLine();
-                Console.WriteLine("Ingrese la cantidad de desarrolladores que requiere:");
-                unMovil.CantidadDesarrolladores = int.Parse(Console.ReadLine());
-                Console.WriteLine("Ingrese la fecha de inicio del proyecto: (DD/MM/AAAA)");
+                bool verdad = true;
+                while (verdad)
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingrese la cantidad de desarrolladores que requiere:");
+                        unMovil.CantidadDesarrolladores = int.Parse(Console.ReadLine());
+                        verdad = false;
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    finally { Console.Clear(); }
+                }  
+                verdad = true;
+                while (verdad)
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingrese la fecha de inicio del proyecto: (DD/MM/AAAA)");
+                        unMovil.FechaInicio = DateTime.Parse(Console.ReadLine());
+                        verdad = false;
+                    }
+                    catch (FormatException e) { Console.WriteLine(e.Message); }
+                    finally { Console.Clear(); }
+                }
+                        
                 unMovil.FechaInicio = DateTime.Parse(Console.ReadLine());
                 unMovil.TipoDesarrollo = Tipo.DESARROLLO_MOVIL;
                 string seleccion = "";
@@ -256,12 +351,12 @@
                         proyectoWeb.CantidadDesarrolladores = int.Parse(Console.ReadLine());
                         Console.WriteLine("Ingrese la fecha de inicio: (DD/MM/AAAA)");
                         proyectoWeb.FechaInicio = DateTime.Parse(Console.ReadLine());
-                        Console.WriteLine("Ingrese el estado del proyecto:" +
-                            "1. Planificacion" +
-                            "2. En desarrollo" +
-                            "3. En pruebas" +
-                            "4. Completado" +
-                            "5. Cancelado");
+                        Console.WriteLine("Ingrese el estado del proyecto:\n" +
+                            "1. Planificacion\n" +
+                            "2. En desarrollo\n" +
+                            "3. En pruebas\n" +
+                            "4. Completado\n" +
+                            "5. Cancelado\n");
                         int opcion = int.Parse(Console.ReadLine());
                         switch (opcion)
                         {
@@ -284,10 +379,10 @@
                                 Console.WriteLine("Opcion invalida...");
                                 break;
                         }
-                        Console.WriteLine("Ingrese la tecnología del proyecto:" +
-                            "1. Angular" +
-                            "2. React" +
-                            "3. Vue.Js ");
+                        Console.WriteLine("Ingrese la tecnología del proyecto:\n" +
+                            "1. Angular\n" +
+                            "2. React\n" +
+                            "3. Vue.Js\n");
                         int opcionTecnologia = int.Parse(Console.ReadLine());
                         switch (opcionTecnologia)
                         {
@@ -334,11 +429,11 @@
                         proyecto.CantidadDesarrolladores = int.Parse(Console.ReadLine());
                         Console.WriteLine("Ingrese la fecha de inicio: (DD/MM/AAAA)");
                         proyecto.FechaInicio = DateTime.Parse(Console.ReadLine());
-                        Console.WriteLine("Ingrese el estado del proyecto:" +
-                            "1. Planificacion" +
-                            "2. En desarrollo" +
-                            "3. En pruebas" +
-                            "4. Completado" +
+                        Console.WriteLine("Ingrese el estado del proyecto:\n" +
+                            "1. Planificacion\n" +
+                            "2. En desarrollo\n" +
+                            "3. En pruebas\n" +
+                            "4. Completado\n" +
                             "5. Cancelado");
                         int opcion = int.Parse(Console.ReadLine());
                         switch (opcion)
