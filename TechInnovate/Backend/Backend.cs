@@ -620,6 +620,27 @@
             }
 
         }
+        static public void EliminarArchivos()
+        {
+            Console.WriteLine("Seguro que desea eliminar todos los proyectos?" +
+                "\nEste cambio es permanente y no puede revertirse!\n" +
+                "Escriba (SI ACEPTO) exactamente por cuestiones de seguridad.");
+            string respuesta = Console.ReadLine();
+            if(respuesta == "SI ACEPTO")
+            {
+                if (File.Exists(archivoProyectosMovil))
+                {
+                    File.Delete(archivoProyectosMovil);
+                    proyectosMovil.Clear();
+                    if (File.Exists(archivoProyectosWeb))
+                    {
+                        proyectosWeb.Clear();
+                        File.Delete(archivoProyectosWeb);
+                    }
+                }
+                Console.WriteLine("Proyectos eliminados exitosamente!");
+            }    
+        }
 
     }
 }
