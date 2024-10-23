@@ -22,11 +22,12 @@
                             string nombre = datos[0].ToString();
                             int cantidadDesarrolladores = int.Parse(datos[1]);
                             DateTime fechaInicio = DateTime.Parse(datos[2]);
-                            Estado estadoProyecto = (Estado)Enum.Parse(typeof(Estado), datos[3]);
-                            Tipo tipoDesarrollo = (Tipo)Enum.Parse(typeof(Tipo), datos[4]);
-                            List<string> plataformas = datos[5].Split(';').ToList();
+                            DateTime fechaFinalizacion = DateTime.Parse(datos[3]);
+                            Estado estadoProyecto = (Estado)Enum.Parse(typeof(Estado), datos[4]);
+                            Tipo tipoDesarrollo = (Tipo)Enum.Parse(typeof(Tipo), datos[5]);
+                            List<string> plataformas = datos[6].Split(';').ToList();
 
-                            proyectosMovil.Add(new DesarrolloMovil(nombre, cantidadDesarrolladores, fechaInicio, estadoProyecto, tipoDesarrollo, plataformas));
+                            proyectosMovil.Add(new DesarrolloMovil(nombre, cantidadDesarrolladores, fechaInicio,fechaFinalizacion, estadoProyecto, tipoDesarrollo, plataformas));
                         }
                         catch (Exception ex)
                         {
@@ -47,11 +48,12 @@
                         string nombre = datos[0].ToString();
                         int cantidadDesarrolladores = int.Parse(datos[1]);
                         DateTime fechaInicio = DateTime.Parse(datos[2]);
-                        Estado estadoProyecto = (Estado)Enum.Parse(typeof(Estado), datos[3]);
-                        Tipo tipoDesarrollo = (Tipo)Enum.Parse(typeof(Tipo), datos[4]);
-                        Tecnologia tecnologia = (Tecnologia)Enum.Parse(typeof(Tecnologia), datos[5]);
+                        DateTime fechaFinalizacion = DateTime.Parse(datos[3]);
+                        Estado estadoProyecto = (Estado)Enum.Parse(typeof(Estado), datos[4]);
+                        Tipo tipoDesarrollo = (Tipo)Enum.Parse(typeof(Tipo), datos[5]);
+                        Tecnologia tecnologia = (Tecnologia)Enum.Parse(typeof(Tecnologia), datos[6]);
 
-                        proyectosWeb.Add(new DesarrolloWeb(nombre, cantidadDesarrolladores, fechaInicio, estadoProyecto, tipoDesarrollo, tecnologia));
+                        proyectosWeb.Add(new DesarrolloWeb(nombre, cantidadDesarrolladores, fechaInicio,fechaFinalizacion, estadoProyecto, tipoDesarrollo, tecnologia));
                     }
                 }
             }
@@ -74,6 +76,7 @@
                 Console.WriteLine($"Nombre: {proyecto.Nombre}\n" +
                                   $"Cantidad de desarrolladores: {proyecto.CantidadDesarrolladores}\n" +
                                   $"Fecha de inicio: {proyecto.FechaInicio.ToString("yyyy-MM-dd")}\n" +
+                                  $"Fecha de finalizacion: {proyecto.FechaFinalizacion.ToString("yyyy-MM-dd")}\n"+
                                   $"Estado: {proyecto.EstadoProyecto}\n" +
                                   $"Tipo: {proyecto.TipoDesarrollo}");
 
@@ -93,7 +96,8 @@
             foreach (var proyectoWeb in proyectosWeb)
             {
                 Console.WriteLine($"Nombre:{proyectoWeb.Nombre}\nCantidad de desarrolladores: {proyectoWeb.CantidadDesarrolladores}\n" +
-                    $"Fecha de inicio: {proyectoWeb.FechaInicio}\nEstado: {proyectoWeb.EstadoProyecto}\n" +
+                    $"Fecha de inicio: {proyectoWeb.FechaInicio}\nFecha de finalizacion: {proyectoWeb.FechaFinalizacion}\n" +
+                    $"Estado: {proyectoWeb.EstadoProyecto}\n" +
                     $"Tipo: {proyectoWeb.TipoDesarrollo}\nTecnologia asociada: {proyectoWeb.Tecnologia}\n");
             }
             Console.WriteLine("\n");
@@ -157,12 +161,33 @@
                 {
                     try
                     {
-                        Console.WriteLine("Ingrese la fecha de inicio del proyecto: (DD/MM/AAAA)");
+                        Console.WriteLine("Ingrese la fecha de inicio del proyecto: (MM/DD/AAAA)");
                         unProyecto.FechaInicio = DateTime.Parse(Console.ReadLine());
                         verdad = false;
                     }
                     catch (FormatException e) { Console.WriteLine(e.Message); }
                     finally { Console.Clear(); }
+                }
+                verdad = true;
+                while (verdad)
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingrese la fecha de finalizacion del proyecto: (MM/DD/AAAA)");
+                        unProyecto.FechaFinalizacion = DateTime.Parse(Console.ReadLine());
+                        if (unProyecto.FechaFinalizacion < unProyecto.FechaInicio)
+                        {
+                            Console.WriteLine("Fecha invalida, intente de nuevo");
+                        }
+                        else
+                        {
+                            verdad = false;
+                        }
+                        
+                    }
+                    catch (FormatException e) { Console.WriteLine(e.Message); }
+                    finally { Console.Clear(); }
+
                 }
                 unProyecto.TipoDesarrollo= Tipo.DESARROLLO_WEB;
                 verdad = true;
@@ -226,13 +251,35 @@
                 {
                     try
                     {
-                        Console.WriteLine("Ingrese la fecha de inicio del proyecto: (DD/MM/AAAA)");
+                        Console.WriteLine("Ingrese la fecha de inicio del proyecto: (MM/DD/AAAA)");
                         unMovil.FechaInicio = DateTime.Parse(Console.ReadLine());
                         verdad = false;
                     }
                     catch (FormatException e) { Console.WriteLine(e.Message); }
                     finally { Console.Clear(); }
                 }
+                verdad = true;
+                while (verdad)
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingrese la fecha de finalizacion del proyecto: (MM/DD/AAAA)");
+                        unMovil.FechaFinalizacion = DateTime.Parse(Console.ReadLine());
+                        if(unMovil.FechaFinalizacion < unMovil.FechaInicio)
+                        {
+                            Console.WriteLine("Fecha invalida, intente de nuevo");
+                        }
+                        else
+                        {
+                            verdad = false;
+                        }
+                        
+                    }
+                    catch (FormatException e) { Console.WriteLine(e.Message); }
+                    finally { Console.Clear(); }
+
+                }
+
                 unMovil.TipoDesarrollo = Tipo.DESARROLLO_MOVIL;
                 string seleccion = "";
                 while(seleccion.Trim().ToLower() != "n")
@@ -346,8 +393,41 @@
                         proyectoWeb.Nombre = Console.ReadLine();
                         Console.WriteLine("Ingrese la cantidad de desarrolladores: ");
                         proyectoWeb.CantidadDesarrolladores = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Ingrese la fecha de inicio: (DD/MM/AAAA)");
-                        proyectoWeb.FechaInicio = DateTime.Parse(Console.ReadLine());
+                        bool verdad = true;
+                        while (verdad)
+                        {
+                            try
+                            {
+                                Console.WriteLine("Ingrese la fecha de inicio del proyecto: (MM/DD/AAAA)");
+                                proyectoWeb.FechaInicio = DateTime.Parse(Console.ReadLine());
+                                verdad = false;
+                            }
+                            catch (FormatException e) { Console.WriteLine(e.Message); }
+                            finally { Console.Clear(); }
+                        }
+                        verdad = true;
+                        while (verdad)
+                        {
+                            try
+                            {
+                                Console.WriteLine("Ingrese la fecha de finalizacion del proyecto: (MM/DD/AAAA)");
+                                proyectoWeb.FechaFinalizacion = DateTime.Parse(Console.ReadLine());
+                                if (proyectoWeb.FechaFinalizacion < proyectoWeb.FechaInicio)
+                                {
+                                    Console.WriteLine("Fecha invalida, intente de nuevo");
+                                }
+                                else
+                                {
+                                    verdad = false;
+                                }
+
+                            }
+                            catch (FormatException e) { Console.WriteLine(e.Message); }
+                            finally { Console.Clear(); }
+
+                        }
+
+
                         Console.WriteLine("Ingrese el estado del proyecto:\n" +
                             "1. Planificacion\n" +
                             "2. En desarrollo\n" +
@@ -425,7 +505,40 @@
                         Console.WriteLine("Ingrese la cantidad de desarrolladores: ");
                         proyecto.CantidadDesarrolladores = int.Parse(Console.ReadLine());
                         Console.WriteLine("Ingrese la fecha de inicio: (DD/MM/AAAA)");
-                        proyecto.FechaInicio = DateTime.Parse(Console.ReadLine());
+                        bool verdad = true; 
+                        while (verdad)
+                        {
+                            try
+                            {
+                                Console.WriteLine("Ingrese la fecha de inicio del proyecto: (MM/DD/AAAA)");
+                                proyecto.FechaInicio = DateTime.Parse(Console.ReadLine());
+                                verdad = false;
+                            }
+                            catch (FormatException e) { Console.WriteLine(e.Message); }
+                            finally { Console.Clear(); }
+                        }
+                        verdad = true;
+                        while (verdad)
+                        {
+                            try
+                            {
+                                Console.WriteLine("Ingrese la fecha de finalizacion del proyecto: (MM/DD/AAAA)");
+                                proyecto.FechaFinalizacion = DateTime.Parse(Console.ReadLine());
+                                if (proyecto.FechaFinalizacion < proyecto.FechaInicio)
+                                {
+                                    Console.WriteLine("Fecha invalida, intente de nuevo");
+                                }
+                                else
+                                {
+                                    verdad = false;
+                                }
+
+                            }
+                            catch (FormatException e) { Console.WriteLine(e.Message); }
+                            finally { Console.Clear(); }
+
+                        }
+
                         Console.WriteLine("Ingrese el estado del proyecto:\n" +
                             "1. Planificacion\n" +
                             "2. En desarrollo\n" +
@@ -489,6 +602,7 @@
                     writer.WriteLine($"{proyectoMovil.Nombre}," +
                                      $"{proyectoMovil.CantidadDesarrolladores}," +
                                      $"{proyectoMovil.FechaInicio.ToString("yyyy-MM-dd")}," +
+                                     $"{proyectoMovil.FechaFinalizacion.ToString("yyyy-MM-dd")},"+
                                      $"{proyectoMovil.EstadoProyecto}," +
                                      $"{proyectoMovil.TipoDesarrollo}," +
                                      $"{plataformasConcatenadas}");
@@ -498,7 +612,7 @@
             {
                 foreach (var proyectoWeb in proyectosWeb)
                 {
-                    writer2.WriteLine($"{proyectoWeb.Nombre},{proyectoWeb.CantidadDesarrolladores},{proyectoWeb.FechaInicio}," +
+                    writer2.WriteLine($"{proyectoWeb.Nombre},{proyectoWeb.CantidadDesarrolladores},{proyectoWeb.FechaInicio}, {proyectoWeb.FechaFinalizacion}," +
                                       $"{proyectoWeb.EstadoProyecto}," +
                                       $"{proyectoWeb.TipoDesarrollo}," +
                                       $"{proyectoWeb.Tecnologia}");
