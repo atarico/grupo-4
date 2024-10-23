@@ -30,27 +30,18 @@ namespace TechInnovate
         {
             Console.WriteLine("Cuantos desarrolladores tendrá su proyecto?: ");
             int cantidadDesarrolladores = int.Parse(Console.ReadLine());
-            Console.WriteLine("En cuantas plataformas será desarrollado? :");
-            int plataformas = int.Parse(Console.ReadLine());
-            Console.WriteLine("Cuantos archivos tendrá el proyecto aproximadamente?: ");
-            int cantidadArchivos = int.Parse(Console.ReadLine());
+            Console.WriteLine("Cuantas plataformas tendra su proyecto?:");
+            int cantidadPlataformas = int.Parse(Console.ReadLine());
 
-            if(cantidadDesarrolladores*2 < cantidadArchivos)
-            {
-                Console.WriteLine("Según la fecha en la que inicie el proyecto, podría demorar:" +
-                    $"{cantidadArchivos*2} semanas en ser completado correctamente.");
-            }
-            else { Console.WriteLine("Es probable que su proyecto no demore mucho mas de:" +
-                $"{cantidadArchivos} semanas"); }
-            if(plataformas >= 3 && cantidadDesarrolladores < cantidadArchivos)
-            {
-                Console.WriteLine("Es probable que su proyecto demore: " +
-                    $"{cantidadDesarrolladores * cantidadArchivos} semanas");
-            }
-            if(cantidadArchivos == cantidadDesarrolladores)
-            {
-                Console.WriteLine($"Seguramente su proyecto dure entre una y dos semanas");
-            }
+            int horasParcialesProyecto = 500;
+            int horasPorPlataforma = 20;
+            int horasTotalesPlataformas = horasPorPlataforma * cantidadPlataformas;
+            int horasTotalesProyecto = horasParcialesProyecto + horasTotalesPlataformas;
+            float horasSemana = 40;
+            float semanasDeTrabajo = horasTotalesProyecto / horasSemana;
+            float DuracionProyecto = semanasDeTrabajo / cantidadDesarrolladores;
+
+            Console.WriteLine($"El proyecto durara {DuracionProyecto} semanas");
         }
     }
 }
