@@ -19,8 +19,17 @@
                     "5. Mostrar proyectos completados\n" +
                     "6. Estimar duración del proyecto\n" +
                     "7. Guardar y Salir\n ");
-                Console.WriteLine("Elija una opcion: ");
-                opcion = int.Parse(Console.ReadLine());
+                bool verdad = true;
+                while (verdad)
+                {
+                    try
+                    {
+                        Console.WriteLine("Elija una opcion: ");
+                        opcion = int.Parse(Console.ReadLine());
+                        if(opcion > 0 && opcion < 8) { verdad = false; }
+                    }catch (FormatException e) { Console.WriteLine("Ingrese una opcion válida...\n"); }
+                }
+                
                 switch (opcion)
                 {
                     case 1:

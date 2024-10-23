@@ -300,7 +300,6 @@
             else
             {
                 Console.WriteLine("Seleccion incorrecta...");
-                Console.ReadLine();
             }
             Console.Clear();
         }
