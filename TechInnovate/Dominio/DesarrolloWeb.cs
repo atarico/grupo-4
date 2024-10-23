@@ -3,8 +3,8 @@
     public class DesarrolloWeb : Proyecto
     {
         private Tecnologia _tecnologia;
-        public DesarrolloWeb(string nombre, int cantidadDesarrolladores, DateTime fechaInicio, Estado estado, Tipo tipoProyecto, Tecnologia tecnologia)
-            : base(nombre, cantidadDesarrolladores, fechaInicio, estado, tipoProyecto) 
+        public DesarrolloWeb(string nombre, int cantidadDesarrolladores, DateTime fechaInicio,DateTime fechaFinalizacion, Estado estado, Tipo tipoProyecto, Tecnologia tecnologia)
+            : base(nombre, cantidadDesarrolladores, fechaInicio, fechaFinalizacion, estado, tipoProyecto) 
         {
             _tecnologia = tecnologia;
             tipoProyecto = Tipo.DESARROLLO_WEB;
