@@ -25,37 +25,31 @@
                 {
                     case 1:
                         Console.Clear();
-                        Console.Beep();
                         Backend.CrearProyecto();
                     break;
 
                     case 2:
                         Console.Clear();
-                        Console.Beep();
                         Backend.MostrarProyectos();
                     break;
 
                     case 3:
                         Console.Clear();
-                        Console.Beep();
                         Backend.ModificarProyecto();
                     break;
 
                     case 4:
                         Console.Clear();
-                        Console.Beep();
                         Backend.EliminarProyecto();
                     break;
 
                     case 5:
                         Console.Clear();
-                        Console.Beep();
                         Backend.MostrarProyectosCompletados();
                         break;
 
                     case 6:
                         Console.Clear();
-                        Console.Beep();
                         Backend.EstimarDuracionProyecto();    
                     break;
 
