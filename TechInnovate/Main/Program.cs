@@ -1,37 +1,67 @@
 ﻿namespace TechInnovate
 {
-
     class Program
     {
         
         static void Main()
         {
+            Backend.CargarDatos();
             int opcion = 0;
 
-            while (opcion != 5)
+            while (opcion != 7)
             {
-                Console.WriteLine("*|*|*|* Bienvenido a TechInnovate *|*|*|*");
-                Console.WriteLine("1. Agregar nuevo proyecto\n2. Mostrar proyectos registrados\n" +
-                    "3. Modificar un proyecto existente\n4. Eliminar proyecto registrado\n" +
-                    "4. Cargar datos\n 5. Guardar y Salir\n ");
+                Console.WriteLine("-------------Bienvenido a TechInnovate-------------");
+                Console.WriteLine("" +
+                    "1. Agregar nuevo proyecto\n" +
+                    "2. Mostrar proyectos registrados\n" +
+                    "3. Modificar un proyecto existente\n" +
+                    "4. Eliminar proyecto registrado\n" +
+                    "5. Mostrar proyectos completados\n" +
+                    "6. Estimar duración del proyecto\n" +
+                    "7. Guardar y Salir\n ");
                 Console.WriteLine("Elija una opcion: ");
                 opcion = int.Parse(Console.ReadLine());
                 switch (opcion)
                 {
                     case 1:
+                        Console.Clear();
+                        Console.Beep();
+                        Backend.CrearProyecto();
                     break;
 
                     case 2:
+                        Console.Clear();
+                        Console.Beep();
+                        Backend.MostrarProyectos();
                     break;
 
                     case 3:
+                        Console.Clear();
+                        Console.Beep();
+                        Backend.ModificarProyecto();
                     break;
 
                     case 4:
+                        Console.Clear();
+                        Console.Beep();
+                        Backend.EliminarProyecto();
                     break;
 
                     case 5:
-                    Console.WriteLine("Saliendo del sistema...");
+                        Console.Clear();
+                        Console.Beep();
+                        Backend.MostrarProyectosCompletados();
+                        break;
+
+                    case 6:
+                        Console.Clear();
+                        Console.Beep();
+                        Backend.EstimarDuracionProyecto();    
+                    break;
+
+                    case 7:
+                        Backend.GuardarDatos();
+                        Console.WriteLine("Guardando y saliendo del sistema...");
                     break;
 
                     default:
@@ -41,9 +71,6 @@
 
             }
             
-
-            //Acá va el menú.
-            //mateo: cargar, guardar y modificar ,desarrollo movil y desarrollo web
         }
 
     }

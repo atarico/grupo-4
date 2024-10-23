@@ -1,14 +1,22 @@
-﻿namespace TechInnovate
+﻿using System.Net.WebSockets;
+
+namespace TechInnovate
 {
     abstract public class Proyecto
     {
 
         private string _nombreProyecto;
-        private string _cantidadDesarrolladores;
+        private int _cantidadDesarrolladores;
         private DateTime _fechaInicio;
         private Estado _estadoProyecto;
         private Tipo _tipoDesarrollo;
-        public Proyecto(string nombre, string cantidadDesarrolladores, DateTime fechaInicio, Estado estado, Tipo tipo){}
+        public Proyecto(string nombre, int cantidadDesarrolladores, DateTime fechaInicio, Estado estado, Tipo tipo)
+        {
+            _nombreProyecto = nombre;
+            _cantidadDesarrolladores = cantidadDesarrolladores;
+            _fechaInicio = fechaInicio;
+            _estadoProyecto = estado;
+        }
         public Proyecto() { }
         public string Nombre
         {
@@ -16,10 +24,17 @@
             set { _nombreProyecto = value; }
         }
 
-        public string CantidadDesarrolladores
+        public int CantidadDesarrolladores
         {
             get { return _cantidadDesarrolladores; }
-            set { _cantidadDesarrolladores = value; }
+            set { if(!(value<=0) || !(value == null))_cantidadDesarrolladores = value;
+                else 
+                { Console.WriteLine("No puede elegir una cantidad de desarrolladores " +
+                    "menor o igual a 0");
+                    Console.ReadLine();
+                    value = 1;
+                }
+                }
         }
 
         public DateTime FechaInicio
