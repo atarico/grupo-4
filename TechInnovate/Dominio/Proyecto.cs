@@ -1,6 +1,4 @@
-﻿using System.Net.WebSockets;
-
-namespace TechInnovate
+﻿namespace TechInnovate
 {
     abstract public class Proyecto
     {

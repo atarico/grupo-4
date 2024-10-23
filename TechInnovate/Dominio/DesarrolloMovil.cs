@@ -1,6 +1,4 @@
-﻿
-
-namespace TechInnovate
+﻿namespace TechInnovate
 {
     public class DesarrolloMovil : Proyecto
     {
